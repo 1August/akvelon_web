@@ -1,25 +1,16 @@
-import logo from './logo.svg';
-import './App.css';
+import 'bootstrap/dist/css/bootstrap.min.css';
+// import './UI/css/default.scss'
+import './App.scss'
+import {NavRoutes} from "./Routes/NavRoutes";
 
-function App() {
+export const App = () => {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
-}
+        <NavRoutes/>
 
-export default App;
+        {/*<RequireAuth>*/}
+        {/*    <MainPage/>*/}
+        {/*</RequireAuth>*/}
+    </div>
+  )
+}

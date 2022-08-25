@@ -1,0 +1,10 @@
+@import "src/UI/css/default";
+
+.registerPage{
+
+  &__form{
+    color: $mainLightColor;
+    background-color: $mainDarkColor;
+    border-radius: 10px;
+  }
+}
