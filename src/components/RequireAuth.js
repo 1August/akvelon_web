@@ -1,13 +1,10 @@
-import {useSelector} from "react-redux";
-import {Navigate} from "react-router-dom";
+import {useSelector} from "react-redux"
+import {Navigate} from "react-router-dom"
 
-export const RequireAuth = ({children, ...props}) => {
+export const RequireAuth = ({children, reverse = false}) => {
     const auth = useSelector(state => state.auth)
-    const { token } = auth
+    console.log(auth)
 
-    if (token){
-        return children
-    } else {
-        return <Navigate to={'/signIn'}/>
-    }
+    if (reverse) return auth.token ? <Navigate to={'/'}/> : children
+    return auth.token ? children : <Navigate to={'/signIn'}/>
 }

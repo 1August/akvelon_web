@@ -16,6 +16,16 @@
     }
   }
 
+  &__auth{
+
+    .logout{
+
+      &:hover{
+        cursor: pointer;
+      }
+    }
+  }
+
   ul{
     list-style: none;
 

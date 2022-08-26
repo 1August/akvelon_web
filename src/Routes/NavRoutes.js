@@ -7,22 +7,15 @@ import {UserPage} from "../pages/userPage";
 import {RequireAuth} from "../components/RequireAuth";
 
 export const NavRoutes = () => {
+    const getWrappedElement = (children, reverse = false) => <RequireAuth children={children} reverse={reverse}/>
+
     return(
         <Routes>
-            <Route path={'/'} element={
-                <RequireAuth>
-                    <MainPage/>
-                </RequireAuth>
-            }/>
-            <Route path={'/signUp'} element={<SignUpPage/>}/>
-            <Route path={'/signIn'} element={<SignInPage/>}/>
-            <Route path={'/user/:email'} element={
-                <RequireAuth>
-                    <UserPage/>
-                </RequireAuth>
-            }/>
+            <Route path={'/'} element={getWrappedElement(<MainPage/>)}/>
+            <Route path={'/signUp'} element={getWrappedElement(<SignUpPage/>, true)}/>
+            <Route path={'/signIn'} element={getWrappedElement(<SignInPage/>, true)}/>
+            <Route path={'/user/:email'} element={getWrappedElement(<UserPage/>)}/>
             <Route path={'*'} element={<NotFoundPage/>}></Route>
         </Routes>
-
     )
 }

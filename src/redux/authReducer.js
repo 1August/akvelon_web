@@ -27,6 +27,7 @@ export const authReducer = (state = initialState, action) => {
         case SET_CREDENTIALS:
             return {user: action.payload.user, token: action.payload.token}
         case LOG_OUT:
+            localStorage.removeItem('user')
             return {user: null, token: null}
         default:
             return state

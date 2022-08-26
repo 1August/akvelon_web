@@ -13,52 +13,31 @@ export const fetchManyUsers = () => {
     }
 }
 
-export const fetchUser = (payload) => {
+export const fetchUser = payload => {
     return dispatch => {
-        axios.post('https://reqres.in/api/users', payload)
+        console.log(payload)
+        axios.post('https://reqres.in/api/register', {
+            username: payload.email,
+            email: payload.email,
+            password: payload.password
+        })
             .then(res => {
                 console.log(res)
-                if (res.status === 201) {
-                    dispatch(addUserAction({...payload, id: res.data.id, createdAt: res.data.createdAt}))
+                if (res.status !== 200) throw new Error(res.message)
+                dispatch(addUserAction({...payload, id: res.data.id}))
+                dispatch(setCredentialsAction({user: {...payload, id: res.data.id}, token: res.data.token}))
 
-                    // auth.login(res.data.token, res.data.id)
-                    // navigation('/')
+                const user = {
+                    id: res.data.id,
+                    email: payload.email,
+                    first_name: payload.first_name,
+                    last_name: payload.last_name,
+                    token: res.data.token
                 }
+                localStorage.setItem('user', JSON.stringify(user))
             })
     }
 }
-
-// export const loginUser = (payload) => {
-//     return dispatch => {
-//         axios.post('https://reqres.in/api/login', {
-//             email: payload.email,
-//             password: payload.password
-//         }).then(res => {
-//             console.log(res)
-//             // res.data.token
-//
-//             if (res.status !== 200) {
-//                 throw new Error(res.message)
-//             }
-//             // const user = {email: payload.email, token: res.data.token}
-//
-//             // auth.login(res.data.token, auth.getId())
-//             // navigation('/')
-//             // dispatch()
-//         })
-//     }
-//
-//     // console.log('loginUser Action > ', payload)
-//
-//     // const users = JSON.parse(localStorage.getItem('users')) || []
-//     // if (users.length !== 0){
-//     //     let user = users.find(el => el.email === payload.email && el.password === payload.password)
-//     //     if (!user){
-//     // }
-//     // }
-//
-
-
 
 export const login = payload => {
     return dispatch => {
@@ -66,12 +45,16 @@ export const login = payload => {
             email: payload.email,
             password: payload.password
         }).then(res => {
-            console.log(res)
-
             if (res.status !== 200) throw new Error(res.message)
             dispatch(setCredentialsAction({user: payload, token: res.data.token}))
+
+            const user = {
+                email: payload.email,
+                first_name: payload.first_name,
+                last_name: payload.last_name,
+                token: res.data.token
+            }
+            localStorage.setItem('user', JSON.stringify(user))
         })
     }
 }
-
-export const logOut = () => dispatch => dispatch(logOutAction())

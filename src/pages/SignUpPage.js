@@ -8,21 +8,28 @@ import {useDispatch, useSelector} from "react-redux";
 import {addUserAction} from "../redux/usersReducer";
 import {fetchUser} from "../redux/asyncActions/fetchUsers";
 import {useAuth} from "../hooks/auth.hook";
+import {NotFoundPage} from "./NotFoundPage";
 
 export const SignUpPage = () => {
     const dispatch = useDispatch()
+    const navigation = useNavigate()
 
     const [userData, setUserData] = useState({email: '', password: '', first_name: '', last_name: ''})
 
+    const user = JSON.parse(localStorage.getItem('user'))
+    if (user) return <NotFoundPage/>
+
     const handleFormChange = e => setUserData({...userData, [e.target.name]: e.target.value})
-
-    const navigation = useNavigate()
-
     const handleRegisterSubmit = e => {
         e.preventDefault()
 
-        // dispatch(fetchUser({userData, auth, navigation}))
-        setUserData({email: '', password: '', first_name: '', last_name: ''})
+        try{
+            dispatch(fetchUser(userData))
+            setUserData({email: '', password: '', first_name: '', last_name: ''})
+            navigation('/')
+        } catch (e){
+            console.error(e)
+        }
     }
 
     return (

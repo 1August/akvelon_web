@@ -1,14 +1,20 @@
 import {Button, Col, Container, Form, Row} from "react-bootstrap";
 import {NavLink, useNavigate} from "react-router-dom";
-import {useState} from "react";
+import {useEffect, useState} from "react";
 import {useDispatch} from "react-redux";
 import {login} from "../redux/asyncActions/fetchUsers";
+import {NotFoundPage} from "./NotFoundPage";
 
 export const SignInPage = () => {
     const navigation = useNavigate()
     const dispatch = useDispatch()
 
     const [userData, setUserData] = useState({email: '', password: ''})
+
+    const user = JSON.parse(localStorage.getItem('user'))
+    if (user) return <NotFoundPage/>
+
+
     const handleFormChange = e => setUserData({...userData, [e.target.name]: e.target.value})
 
     const handleLoginSubmit = e => {

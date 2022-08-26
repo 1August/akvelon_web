@@ -2,7 +2,7 @@ import '../assets/css/Header.scss'
 import {Col, Container, Row} from "react-bootstrap";
 import {NavLink, useNavigate} from "react-router-dom";
 import {useDispatch, useSelector} from "react-redux";
-import {logOut} from "../redux/asyncActions/fetchUsers";
+import {logOutAction} from "../redux/authReducer";
 
 export const Header = () => {
 
@@ -13,7 +13,7 @@ export const Header = () => {
     const navigator = useNavigate()
 
     const handleLogout = () => {
-        dispatch(logOut())
+        dispatch(logOutAction())
         navigator('/')
     }
 
@@ -28,20 +28,20 @@ export const Header = () => {
                             </NavLink>
                         </h1>
                     </Col>
-                    <Col xs={6} sm={6} md={6} className={'header__nav'}>
+                    <Col xs={6} sm={6} md={5} className={'header__nav'}>
                         <ul className={'d-flex align-items-center gap-4 m-0 p-0'}>
                             <li><NavLink to="/">Home</NavLink></li>
                             <li><NavLink to="/products">Products</NavLink></li>
                             <li><NavLink to="/about">About</NavLink></li>
                         </ul>
                     </Col>
-                    <Col xs={6} sm={6} md={3} className={'header__auth'}>
+                    <Col xs={6} sm={6} md={4} className={'header__auth'}>
                         <ul className={'d-flex justify-content-end align-items-center gap-4 m-0 p-0'}>
                             {
                                 user?.email ?
                                     <>
                                         <li><NavLink to={`/user/${user.email}`}>{user.email}</NavLink></li>
-                                        <li><span onClick={handleLogout}>Log out</span></li>
+                                        <li><span onClick={handleLogout} className={'logout'}>Log out</span></li>
                                     </> :
                                     <li><NavLink to="/signIn">Sign in</NavLink></li>
                             }

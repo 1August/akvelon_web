@@ -1,20 +1,17 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
-// import './UI/css/default.scss'
 import './App.scss'
+
 import {NavRoutes} from "./Routes/NavRoutes";
 import {Header} from "./components/Header";
-import {Banner} from "./components/Banner";
+import {useSelector} from "react-redux";
 
 export const App = () => {
-  return (
-    <div className="App">
-        <Header
+    const user = useSelector(state => state.auth.user)
 
-        />
-        <NavRoutes/>
-
-        {/*<RequireAuth>*/}
-        {/*</RequireAuth>*/}
-    </div>
-  )
+    return (
+        <div className="App">
+            { user?.email && <Header/>}
+            <NavRoutes/>
+        </div>
+    )
 }

@@ -41,13 +41,3 @@ export const MainPageContent = () => {
         </main>
     )
 }
-
-// <ul>
-//     {
-//         (users && users?.length !== 0 && users.map((el, i) => (
-//             <li key={i}>{JSON.stringify(el)}</li>
-//         ))) || (
-//             <h1>Users list is empty!</h1>
-//         )
-//     }
-// </ul>
