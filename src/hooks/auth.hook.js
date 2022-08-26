@@ -1,44 +1,36 @@
 // import {useCallback, useEffect, useState} from "react"
 //
 // export const useAuth = () => {
-//     // const [token, setToken] = useState(null)
+//     const [token, setToken] = useState(null)
 //     const [ready, setReady] = useState(false)
 //     const [userId, setUserId] = useState(null)
 //
 //     const storageName = 'userData'
 //
-//     const login = useCallback((
-//         // jwtToken,
-//         id) => {
-//         // setToken(jwtToken)
+//     const login = useCallback((jwtToken, id) => {
+//         setToken(jwtToken)
 //         setUserId(id)
 //
-//         localStorage.setItem(storageName, JSON.stringify({userId: id
-//             // , token: jwtToken
-//         }))
+//         localStorage.setItem(storageName, JSON.stringify({userId: id, token: jwtToken}))
 //     }, [])
 //
 //     const logout = useCallback(() => {
-//         // setToken(null)
+//         setToken(null)
 //         setUserId(null)
 //
 //         localStorage.removeItem(storageName)
 //     }, [])
 //
+//     const getId = useCallback(() => (JSON.parse(localStorage.getItem(storageName)).userId), [])
+//
 //     useEffect(() => {
 //         const data = JSON.parse(localStorage.getItem(storageName))
 //
-//         // if (data && data.token){
-//         //     login(data.token, data.userId)
-//         // }
-//
-//         if (data){
-//             login(data.userId)
+//         if (data && data.token){
+//             login(data.token, data.userId)
 //         }
 //         setReady(true)
 //     }, [login])
 //
-//     return { login, logout,
-//         // token,
-//         userId, ready }
+//     return { login, logout, getId, token, userId, ready }
 // }

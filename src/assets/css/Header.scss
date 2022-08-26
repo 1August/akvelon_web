@@ -1,9 +1,8 @@
-@import "src/UI/css/default";
+@import "default";
 
 .header{
   color: $mainLightColor;
   background-color: $mainDarkColor;
-  padding: 2rem 0;
 
   &__brand{
     a{

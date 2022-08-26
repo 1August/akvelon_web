@@ -1,45 +1,40 @@
-import '../UI/css/RegisterPage.scss'
-
 import {Button, Col, Container, Form, Row} from "react-bootstrap";
-import {Header} from "../components/Header";
-import {NavLink} from "react-router-dom";
+import {NavLink, useNavigate} from "react-router-dom";
 import {useState} from "react";
-import {useDispatch, useSelector} from "react-redux";
-import {addUserAction} from "../redux/usersReducer";
+import {useDispatch} from "react-redux";
+import {login} from "../redux/asyncActions/fetchUsers";
 
-export const RegisterPage = () => {
+export const SignInPage = () => {
+    const navigation = useNavigate()
     const dispatch = useDispatch()
-    // const user = useSelector(state => state.user)
-    const users = useSelector(state => state.users.users)
 
     const [userData, setUserData] = useState({email: '', password: ''})
+    const handleFormChange = e => setUserData({...userData, [e.target.name]: e.target.value})
 
-    const handleFormChange = e => setUserData({...userData, [e.target.type]: e.target.value})
-
-    const handleRegisterSubmit = e => {
+    const handleLoginSubmit = e => {
         e.preventDefault()
-
-        dispatch(addUserAction(userData))
+        try {
+            dispatch(login(userData))
+            navigation('/')
+        } catch (e){
+            console.log(e)
+        }
+        setUserData({email: '', password: ''})
     }
 
     return (
-        <div className="registerPage" id="registerPage">
-            {
-                JSON.stringify(users)
-            }
+        <div className="loginPage" id="loginPage">
             <Container>
-                <Row className={'justify-content-center g-5'}>
-                    <Col className={'registerPage__goMain col-12'}>
-                        <NavLink to={'/'}>Main</NavLink>
-                    </Col>
-                    <Col className={'registerPage__form col-6'}>
-                        <Form className={'py-4'} onSubmit={handleRegisterSubmit}>
+                <Row className={'justify-content-center my-5'}>
+                    <Col xs={6} className={'registerPage__form'}>
+                        <Form className={'py-4'} onSubmit={handleLoginSubmit}>
                             <Form.Group className={'mb-5 text-center'}>
-                                <h1>Sign up for free!</h1>
+                                <h1>Sign in</h1>
                             </Form.Group>
                             <Form.Group className="mb-3" controlId="formBasicEmail">
                                 <Form.Label>Email address</Form.Label>
                                 <Form.Control
+                                    name={'email'}
                                     type="email"
                                     placeholder="Enter email"
                                     onChange={handleFormChange}
@@ -50,6 +45,7 @@ export const RegisterPage = () => {
                             <Form.Group className="mb-3" controlId="formBasicPassword">
                                 <Form.Label>Password</Form.Label>
                                 <Form.Control
+                                    name={'password'}
                                     type="password"
                                     placeholder="Password"
                                     onChange={handleFormChange}
@@ -57,9 +53,12 @@ export const RegisterPage = () => {
                                 />
                             </Form.Group>
 
-                            <Button variant="primary" type="submit">
-                                Submit
-                            </Button>
+                            <Form.Group className={'d-flex g-4 align-items-center'}>
+                                    <Button className={'me-4'} variant="primary" type="submit">
+                                        Sign In
+                                    </Button>
+                                    <NavLink to={'/signUp'}>Join us!</NavLink>
+                            </Form.Group>
                         </Form>
                     </Col>
                 </Row>

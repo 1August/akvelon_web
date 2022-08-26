@@ -12,9 +12,7 @@ export const usersReducer = (state = initialState, action) => {
 
     switch (action.type){
         case GET_USERS:
-            // const data = await (await axios.get('https://reqres.in/api/users?page=1')).data.data
-            // return data
-            return state
+            return {users: state.users}
         case ADD_MANY_USERS:
             return {...state, users: [...state.users, ...action.payload]}
         case ADD_USER:
@@ -27,6 +25,6 @@ export const usersReducer = (state = initialState, action) => {
 }
 
 export const addManyUsersAction = payload => ({type: ADD_MANY_USERS, payload})
-export const getUsersAction = payload => ({type: GET_USERS})
+export const getUsersAction = () => ({type: GET_USERS})
 export const addUserAction = payload => ({type: ADD_USER, payload})
 export const removeUserAction = payload => ({type: REMOVE_USER, payload})

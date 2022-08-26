@@ -1,0 +1,39 @@
+@import "default";
+
+.mainPageContent {
+  .row{
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-gap: 1.5rem 3rem;
+  }
+
+  .mainPageContent__userCards{
+    margin-top: 2rem;
+  }
+
+  .userCard {
+    display: grid;
+    grid-template-columns: 1fr 3fr;
+    align-items: center;
+    grid-gap: 2rem;
+
+    box-shadow: .5rem .5rem 20px $lightShadow;
+    border-radius: 5px;
+
+    //&:hover{
+    //  cursor: pointer;
+    //}
+
+    .cardImg{
+
+      img{
+        border-radius: 100%;
+        aspect-ratio: 1;
+      }
+    }
+
+    p{
+      color: $secondDarkColor;
+    }
+  }
+}

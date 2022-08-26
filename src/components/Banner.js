@@ -1,4 +1,4 @@
-import {ControlledCarousel} from "./ControlledCarousel";
+import {ControlledCarousel} from "../UI/ControlledCarousel";
 import {Container} from "react-bootstrap";
 
 export const Banner = () => {
