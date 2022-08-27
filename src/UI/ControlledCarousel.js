@@ -1,5 +1,5 @@
 import Carousel from 'react-bootstrap/Carousel'
-import {useState} from "react";
+import {useState} from "react"
 
 export const ControlledCarousel = () => {
     const [index, setIndex] = useState(0)
@@ -27,7 +27,6 @@ export const ControlledCarousel = () => {
                     src="https://d2ofqe7l47306o.cloudfront.net/games/1920x1080/lost-in-random-concept-art-02.jpg"
                     alt="Second slide"
                 />
-
                 <Carousel.Caption>
                     <h3>Second slide label</h3>
                     <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
@@ -39,7 +38,6 @@ export const ControlledCarousel = () => {
                     src="https://d2ofqe7l47306o.cloudfront.net/games/1920x1080/lost-in-random-concept-art-02.jpg"
                     alt="Third slide"
                 />
-
                 <Carousel.Caption>
                     <h3>Third slide label</h3>
                     <p>

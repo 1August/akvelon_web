@@ -1,11 +1,10 @@
-import {Header} from "../components/Header";
-import {Col, Container, Row} from "react-bootstrap";
-import {NavLink} from "react-router-dom";
+import {Col, Container, Row} from "react-bootstrap"
+import {NavLink} from "react-router-dom"
 
 export const NotFoundPage = () => {
     const user = localStorage.getItem('user')
 
-    return(
+    return (
         <div className="notFoundPage" id="notFoundPage">
             <main>
                 <Container>
@@ -13,7 +12,11 @@ export const NotFoundPage = () => {
                         <Col xs={12} className={'text-center'}>
                             <h1 className={'text-danger'}>Error 404. Page not found!</h1>
                             {
-                                user && <h5><NavLink to={'/'} className={'text-decoration-none'}>Go Home</NavLink></h5>
+                                user && <h5>
+                                    <NavLink to={'/'} className={'text-decoration-none'}>
+                                        Go Home
+                                    </NavLink>
+                                </h5>
                             }
                         </Col>
                     </Row>

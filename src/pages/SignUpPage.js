@@ -1,35 +1,47 @@
 import '../assets/css/RegisterPage.scss'
 
-import {Button, Col, Container, Form, Row} from "react-bootstrap";
-import {Header} from "../components/Header";
-import {NavLink, useNavigate} from "react-router-dom";
-import {useState} from "react";
-import {useDispatch, useSelector} from "react-redux";
-import {addUserAction} from "../redux/usersReducer";
-import {fetchUser} from "../redux/asyncActions/fetchUsers";
-import {useAuth} from "../hooks/auth.hook";
-import {NotFoundPage} from "./NotFoundPage";
+import {Button, Col, Container, Form, Row} from "react-bootstrap"
+import {NavLink, useNavigate} from "react-router-dom"
+import {useRef, useState} from "react"
+import {useDispatch} from "react-redux"
 
 export const SignUpPage = () => {
     const dispatch = useDispatch()
     const navigation = useNavigate()
+    const emailRef = useRef()
 
-    const [userData, setUserData] = useState({email: '', password: '', first_name: '', last_name: ''})
+    const [userData, setUserData] = useState({
+        email: '',
+        password: '',
+        first_name: '',
+        last_name: ''
+    })
 
-    const user = JSON.parse(localStorage.getItem('user'))
-    if (user) return <NotFoundPage/>
+    // const user = JSON.parse(localStorage.getItem('user'))
+    // if (user) return <NotFoundPage/>
+
+    // const register =
 
     const handleFormChange = e => setUserData({...userData, [e.target.name]: e.target.value})
+
+
+    /*
+        TODO
+        - If data is wrong user still navigates to signIn page
+     */
     const handleRegisterSubmit = e => {
         e.preventDefault()
 
-        try{
-            dispatch(fetchUser(userData))
-            setUserData({email: '', password: '', first_name: '', last_name: ''})
-            navigation('/')
-        } catch (e){
-            console.error(e)
-        }
+        // new Promise(res =>  (dispatch(fetchUser(userData))))
+        //     .then(() => {
+        //         setUserData({email: '', password: '', first_name: '', last_name: ''})
+        //         navigation('/')
+        //     }).catch(e => console.log(e))
+
+        // register().then(() => {
+        //     setUserData({email: '', password: '', first_name: '', last_name: ''})
+        //     navigation('/')
+        // }).catch(e => console.log(e))
     }
 
     return (
@@ -49,6 +61,7 @@ export const SignUpPage = () => {
                                     placeholder="Enter first name"
                                     onChange={handleFormChange}
                                     value={userData.first_name}
+                                    required={true}
                                 />
                             </Form.Group>
                             <Form.Group className="mb-3" controlId="formBasicEmail">
@@ -59,6 +72,7 @@ export const SignUpPage = () => {
                                     placeholder="Enter last name"
                                     onChange={handleFormChange}
                                     value={userData.last_name}
+                                    required={true}
                                 />
                             </Form.Group>
                             <Form.Group className="mb-3" controlId="formBasicEmail">
@@ -69,9 +83,10 @@ export const SignUpPage = () => {
                                     placeholder="Enter email"
                                     onChange={handleFormChange}
                                     value={userData.email}
+                                    ref={emailRef}
+                                    required={true}
                                 />
                             </Form.Group>
-
                             <Form.Group className="mb-3" controlId="formBasicPassword">
                                 <Form.Label>Password</Form.Label>
                                 <Form.Control
@@ -80,10 +95,9 @@ export const SignUpPage = () => {
                                     placeholder="Password"
                                     onChange={handleFormChange}
                                     value={userData.password}
+                                    required={true}
                                 />
                             </Form.Group>
-
-
                             <Form.Group className={'d-flex g-4 align-items-center'}>
                                 <Button className={'me-4'} variant="primary" type="submit">
                                     Sign Up

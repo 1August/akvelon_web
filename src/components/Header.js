@@ -1,14 +1,15 @@
 import '../assets/css/Header.scss'
-import {Col, Container, Row} from "react-bootstrap";
-import {NavLink, useNavigate} from "react-router-dom";
-import {useDispatch, useSelector} from "react-redux";
-import {logOutAction} from "../redux/authReducer";
+
+import {Col, Container, Row} from "react-bootstrap"
+import {NavLink, useNavigate} from "react-router-dom"
+
+import {useDispatch, useSelector} from "react-redux"
+import {logOutAction} from "../redux/authReducer"
 
 export const Header = () => {
-
     const dispatch = useDispatch()
     const auth = useSelector(state => state.auth)
-    const { user } = auth
+    const {user} = auth
 
     const navigator = useNavigate()
 
@@ -22,11 +23,7 @@ export const Header = () => {
             <Container>
                 <Row className={'align-items-center g-4 g-md-0'}>
                     <Col md={3} className={'header__brand d-flex justify-content-md-start justify-content-center'}>
-                        <h1>
-                            <NavLink to={'/'}>
-                                Akvelon
-                            </NavLink>
-                        </h1>
+                        <h1><NavLink to={'/'}>Akvelon</NavLink></h1>
                     </Col>
                     <Col xs={6} sm={6} md={5} className={'header__nav'}>
                         <ul className={'d-flex align-items-center gap-4 m-0 p-0'}>
@@ -40,8 +37,12 @@ export const Header = () => {
                             {
                                 user?.email ?
                                     <>
-                                        <li><NavLink to={`/user/${user.email}`}>{user.email}</NavLink></li>
-                                        <li><span onClick={handleLogout} className={'logout'}>Log out</span></li>
+                                        <li><NavLink to={`/user/${user.email}`}>
+                                            {user.email}
+                                        </NavLink></li>
+                                        <li><span onClick={handleLogout} className={'logout'}>
+                                            Log out
+                                        </span></li>
                                     </> :
                                     <li><NavLink to="/signIn">Sign in</NavLink></li>
                             }

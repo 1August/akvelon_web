@@ -1,6 +1,6 @@
-import axios from "axios";
-import {addManyUsersAction, addUserAction} from "../usersReducer";
-import {logOutAction, setCredentialsAction} from "../authReducer";
+import axios from "axios"
+import {addManyUsersAction, addUserAction} from "../usersReducer"
+import {setCredentialsAction} from "../authReducer"
 
 export const fetchManyUsers = () => {
     return dispatch => {

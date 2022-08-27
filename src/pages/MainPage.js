@@ -1,5 +1,5 @@
-import {Banner} from "../components/Banner";
-import {MainPageContent} from "../components/MainPageContent";
+import {Banner} from "../components/Banner"
+import {MainPageContent} from "../components/MainPageContent"
 
 export const MainPage = () => {
     return (

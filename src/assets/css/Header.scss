@@ -1,43 +1,43 @@
 @import "default";
 
-.header{
+.header {
   color: $mainLightColor;
   background-color: $mainDarkColor;
 
-  &__brand{
-    a{
+  &__brand {
+    a {
       text-transform: uppercase;
       text-decoration: none;
       color: $mainLightColor;
 
-      &:hover{
+      &:hover {
         color: $mainLightColor;
       }
     }
   }
 
-  &__auth{
+  &__auth {
 
-    .logout{
+    .logout {
 
-      &:hover{
+      &:hover {
         cursor: pointer;
       }
     }
   }
 
-  ul{
+  ul {
     list-style: none;
 
-    a{
+    a {
       text-decoration: none;
       color: $secondLightColor;
 
-      &.active{
+      &.active {
         color: $mainLightColor;
       }
 
-      &:hover{
+      &:hover {
         color: $mainLightColor;
       }
     }

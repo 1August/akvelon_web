@@ -1,8 +1,7 @@
-import {ControlledCarousel} from "../UI/ControlledCarousel";
-import {Container} from "react-bootstrap";
+import {ControlledCarousel} from "../UI/ControlledCarousel"
 
 export const Banner = () => {
-    return(
+    return (
         <div className={'banner'} id={'banner'}>
             <ControlledCarousel/>
         </div>

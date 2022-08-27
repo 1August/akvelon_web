@@ -1,9 +1,8 @@
-import {Button, Col, Container, Form, Row} from "react-bootstrap";
-import {NavLink, useNavigate} from "react-router-dom";
-import {useEffect, useState} from "react";
-import {useDispatch} from "react-redux";
-import {login} from "../redux/asyncActions/fetchUsers";
-import {NotFoundPage} from "./NotFoundPage";
+import {Button, Col, Container, Form, Row} from "react-bootstrap"
+import {NavLink, useNavigate} from "react-router-dom"
+import {useState} from "react"
+import {useDispatch} from "react-redux"
+import {login} from "../redux/asyncActions/fetchUsers"
 
 export const SignInPage = () => {
     const navigation = useNavigate()
@@ -11,20 +10,12 @@ export const SignInPage = () => {
 
     const [userData, setUserData] = useState({email: '', password: ''})
 
-    const user = JSON.parse(localStorage.getItem('user'))
-    if (user) return <NotFoundPage/>
-
-
     const handleFormChange = e => setUserData({...userData, [e.target.name]: e.target.value})
 
     const handleLoginSubmit = e => {
         e.preventDefault()
-        try {
-            dispatch(login(userData))
-            navigation('/')
-        } catch (e){
-            console.log(e)
-        }
+        dispatch(login(userData))
+        navigation('/')
         setUserData({email: '', password: ''})
     }
 
@@ -47,7 +38,6 @@ export const SignInPage = () => {
                                     value={userData.email}
                                 />
                             </Form.Group>
-
                             <Form.Group className="mb-3" controlId="formBasicPassword">
                                 <Form.Label>Password</Form.Label>
                                 <Form.Control
@@ -58,12 +48,11 @@ export const SignInPage = () => {
                                     value={userData.password}
                                 />
                             </Form.Group>
-
                             <Form.Group className={'d-flex g-4 align-items-center'}>
-                                    <Button className={'me-4'} variant="primary" type="submit">
-                                        Sign In
-                                    </Button>
-                                    <NavLink to={'/signUp'}>Join us!</NavLink>
+                                <Button className={'me-4'} variant="primary" type="submit">
+                                    Sign In
+                                </Button>
+                                <NavLink to={'/signUp'}>Join us!</NavLink>
                             </Form.Group>
                         </Form>
                     </Col>
