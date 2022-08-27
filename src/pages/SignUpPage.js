@@ -2,13 +2,14 @@ import '../assets/css/RegisterPage.scss'
 
 import {Button, Col, Container, Form, Row} from "react-bootstrap"
 import {NavLink, useNavigate} from "react-router-dom"
-import {useRef, useState} from "react"
-import {useDispatch} from "react-redux"
+import {useState} from "react"
+import {useDispatch, useSelector} from "react-redux"
+import {fetchUser} from "../redux/asyncActions/fetchUsers";
 
 export const SignUpPage = () => {
     const dispatch = useDispatch()
+    const auth = useSelector(state => state.auth)
     const navigation = useNavigate()
-    const emailRef = useRef()
 
     const [userData, setUserData] = useState({
         email: '',
@@ -17,31 +18,12 @@ export const SignUpPage = () => {
         last_name: ''
     })
 
-    // const user = JSON.parse(localStorage.getItem('user'))
-    // if (user) return <NotFoundPage/>
-
-    // const register =
+    if (auth.token) navigation('/')
 
     const handleFormChange = e => setUserData({...userData, [e.target.name]: e.target.value})
-
-
-    /*
-        TODO
-        - If data is wrong user still navigates to signIn page
-     */
     const handleRegisterSubmit = e => {
         e.preventDefault()
-
-        // new Promise(res =>  (dispatch(fetchUser(userData))))
-        //     .then(() => {
-        //         setUserData({email: '', password: '', first_name: '', last_name: ''})
-        //         navigation('/')
-        //     }).catch(e => console.log(e))
-
-        // register().then(() => {
-        //     setUserData({email: '', password: '', first_name: '', last_name: ''})
-        //     navigation('/')
-        // }).catch(e => console.log(e))
+        dispatch(fetchUser(userData))
     }
 
     return (
@@ -80,10 +62,9 @@ export const SignUpPage = () => {
                                 <Form.Control
                                     name={'email'}
                                     type="email"
-                                    placeholder="Enter email"
+                                    placeholder="Enter email (ex: george.bluth@reqres.in)"
                                     onChange={handleFormChange}
                                     value={userData.email}
-                                    ref={emailRef}
                                     required={true}
                                 />
                             </Form.Group>
@@ -92,7 +73,7 @@ export const SignUpPage = () => {
                                 <Form.Control
                                     name={'password'}
                                     type="password"
-                                    placeholder="Password"
+                                    placeholder="Password (tip: any)"
                                     onChange={handleFormChange}
                                     value={userData.password}
                                     required={true}

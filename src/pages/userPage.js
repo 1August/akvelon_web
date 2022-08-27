@@ -4,8 +4,9 @@ import {useSelector} from "react-redux"
 import avatar from '../assets/img/user_avatar.png'
 
 export const UserPage = () => {
-    let user = JSON.parse(localStorage.getItem('user'))
+    let userEmail = JSON.parse(localStorage.getItem('user')).email
     const users = useSelector(state => state.users.users)
+    const user = users.find(el => el.email = userEmail)
 
     return (
         <div className="userPage my-5" id="userPage">

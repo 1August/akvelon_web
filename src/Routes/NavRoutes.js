@@ -15,11 +15,11 @@ export const NavRoutes = () => {
             />
             <Route
                 path={'/signUp'}
-                element={<SignUpPage/>}
+                element={<RequireAuth children={<SignUpPage/>} reverse={true}/>}
             />
             <Route
                 path={'/signIn'}
-                element={<SignInPage/>}
+                element={<RequireAuth children={<SignInPage/>} reverse={true}/>}
             />
             <Route
                 path={'/user/:email'}

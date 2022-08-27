@@ -20,8 +20,8 @@ export const MainPageContent = () => {
                 <Container>
                     <h1 className={'py-2'}>
                         Take any email to sign in!
-                        <Button onClick={generateUsers}>Generate users</Button>
                     </h1>
+                    <Button onClick={generateUsers}>Generate users</Button>
                     <Row className={'mainPageContent__userCards'}>
                         {
                             users?.length > 0 ? users.map((el, i) => (

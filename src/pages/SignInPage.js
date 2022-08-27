@@ -1,22 +1,22 @@
 import {Button, Col, Container, Form, Row} from "react-bootstrap"
 import {NavLink, useNavigate} from "react-router-dom"
 import {useState} from "react"
-import {useDispatch} from "react-redux"
+import {useDispatch, useSelector} from "react-redux"
 import {login} from "../redux/asyncActions/fetchUsers"
 
 export const SignInPage = () => {
     const navigation = useNavigate()
     const dispatch = useDispatch()
+    const auth = useSelector(state => state.auth)
 
     const [userData, setUserData] = useState({email: '', password: ''})
 
-    const handleFormChange = e => setUserData({...userData, [e.target.name]: e.target.value})
+    if (auth.token) navigation('/')
 
+    const handleFormChange = e => setUserData({...userData, [e.target.name]: e.target.value})
     const handleLoginSubmit = e => {
         e.preventDefault()
         dispatch(login(userData))
-        navigation('/')
-        setUserData({email: '', password: ''})
     }
 
     return (
@@ -33,7 +33,7 @@ export const SignInPage = () => {
                                 <Form.Control
                                     name={'email'}
                                     type="email"
-                                    placeholder="Enter email"
+                                    placeholder="Enter email (ex: george.bluth@reqres.in)"
                                     onChange={handleFormChange}
                                     value={userData.email}
                                 />
@@ -43,7 +43,7 @@ export const SignInPage = () => {
                                 <Form.Control
                                     name={'password'}
                                     type="password"
-                                    placeholder="Password"
+                                    placeholder="Password (tip: any)"
                                     onChange={handleFormChange}
                                     value={userData.password}
                                 />
