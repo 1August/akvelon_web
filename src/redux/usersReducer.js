@@ -5,6 +5,12 @@ const initialState = {
 const ADD_MANY_USERS = 'ADD_MANY_USERS'
 const ADD_USER = 'ADD_USER'
 
+/**
+ * Work with many users
+ * @param state
+ * @param action
+ * @returns {{users: *[]}}
+ */
 export const usersReducer = (state = initialState, action) => {
     switch (action.type) {
         case ADD_MANY_USERS:

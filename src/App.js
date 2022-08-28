@@ -3,8 +3,13 @@ import './App.scss'
 
 import {NavRoutes} from "./Routes/NavRoutes"
 import {Header} from "./components/Header"
-import {useSelector} from "react-redux"
+import {useDispatch, useSelector} from "react-redux"
 
+/**
+ *
+ * @returns {JSX.Element}
+ * @constructor
+ */
 export const App = () => {
     const user = useSelector(state => state.auth.user)
 

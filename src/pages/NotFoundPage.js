@@ -1,5 +1,10 @@
 import {Col, Container, Row} from "react-bootstrap"
 
+/**
+ * If url is not correct
+ * @returns {JSX.Element}
+ * @constructor
+ */
 export const NotFoundPage = () => {
     return (
         <div className="notFoundPage" id="notFoundPage">

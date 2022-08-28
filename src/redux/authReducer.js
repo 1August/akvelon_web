@@ -6,6 +6,12 @@ const initialState = {
 const SET_CREDENTIALS = 'SET_CREDENTIALS'
 const LOG_OUT = 'LOG_OUT'
 
+/**
+ * Login/logout linked with async actions
+ * @param state
+ * @param action
+ * @returns {{user: null, token: null}|{user: (null|number|PublicKeyCredentialUserEntity|*), token: (null|CancelToken|*)}}
+ */
 export const authReducer = (state = initialState, action) => {
     switch (action.type) {
         case SET_CREDENTIALS:

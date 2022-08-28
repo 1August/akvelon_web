@@ -2,11 +2,20 @@ import axios from "axios"
 import {addManyUsersAction, addUserAction} from "../usersReducer"
 import {setCredentialsAction} from "../authReducer"
 
+/**
+ * Sets users in store
+ * @returns {function(*): Promise<*>}
+ */
 export const fetchManyUsers = () =>
     dispatch =>
         axios.get('https://reqres.in/api/users?page=1')
             .then(res => dispatch(addManyUsersAction(res.data.data)))
 
+/**
+ * Aka registration
+ * @param payload
+ * @returns {function(*): Promise<AxiosResponse<any>>}
+ */
 export const fetchUser = payload =>
     dispatch =>
         axios.post('https://reqres.in/api/register', {
@@ -29,6 +38,11 @@ export const fetchUser = payload =>
                 localStorage.setItem('user', JSON.stringify(user))
             })
 
+/**
+ * Logins only email that have in API
+ * @param payload
+ * @returns {function(*): Promise<AxiosResponse<any>>}
+ */
 export const login = payload =>
     dispatch =>
         axios.post('https://reqres.in/api/login', {
