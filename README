@@ -1,7 +1,10 @@
 This web application was created with technologies:
     - React, Redux, Redux Thunk, Bootstrap, SCSS.
+    (Also I have a good experience with Node.js, Express.js and MongoDB, that can be implemented in the future)
 Tested with:
     - Jest, Testing Library.
+
+You can visit it in Vercel by link: https://akvelon-web.vercel.app/ or download it into your computer to run it.
 
 if you have any questions, you can send it to me by mail maksat01kuanysh@gmail.com. I will be happy to answer all your questions
 
